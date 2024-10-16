@@ -1,10 +1,4 @@
-import 'package:chetan_bhagat/view/Screens/about.dart';
-import 'package:chetan_bhagat/view/Screens/motivational_stories.dart';
-import 'package:chetan_bhagat/view/Screens/myBooks.dart';
-import 'package:chetan_bhagat/view/Screens/myimages.dart';
-import 'package:chetan_bhagat/view/Screens/quotes.dart';
-import 'package:chetan_bhagat/view/Screens/videos.dart';
-import 'package:flutter/material.dart';
+import 'package:chetan_bhagat/view/exports/myexports.dart';
 
 class Uihelper {
   //Container
