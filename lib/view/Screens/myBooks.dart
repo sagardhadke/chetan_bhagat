@@ -26,18 +26,21 @@ class _MyBooksState extends State<MyBooks> {
     }
   }
 
-  Future<void> _launchInBrowserView(Uri url) async {
-    // if (!await launchUrl(url, mode: LaunchMode.inAppWebView)) {
-    //   throw Exception('Could not launch $url');
-    // }
-    if (!await launchUrl(
-      url,
-      mode: LaunchMode.inAppWebView,
-      webViewConfiguration: const WebViewConfiguration(enableJavaScript: false),
-    )) {
-      throw Exception('Could not launch $url');
-    }
+  //Uri Launcher Code
+
+ Future<void> _launchInBrowserView(String encodedUrl) async {
+  // Decode the URL
+  final decodedUrl = Uri.decodeFull(encodedUrl);
+
+  // Launch the URL in the external browser
+  if (!await launchUrl(
+    Uri.parse(decodedUrl), // You can parse it here for launching
+    mode: LaunchMode.externalApplication,
+  )) {
+    throw Exception('Could not launch $decodedUrl'); // Use decodedUrl for the exception message
   }
+}
+
 
   @override
   void initState() {
@@ -67,8 +70,9 @@ class _MyBooksState extends State<MyBooks> {
                 itemBuilder: (context, index) {
                   return Uihelper.customContainerNetwork(
                       callback: () {
+                        print("----OnPress Book LInk-----");
                         _launchInBrowserView(
-                            Uri(path: ofbooks![index].bookLinkImage));
+                            ofbooks![index].bookLinkUrl!);
                         print("This is URi");
                         print(Uri(path: ofbooks![index].bookLinkUrl));
                         // ofbooks![index].bookLinkUrl);
@@ -76,24 +80,6 @@ class _MyBooksState extends State<MyBooks> {
                       text: ofbooks![index].bookLinkName!,
                       imgUrl: ofbooks![index].bookLinkImage!,
                       context: context);
-                  // return Container(
-                  //   height: 350,
-                  //   color: Colors.amber,
-                  //   child: Column(
-                  //     children: [
-                  //       CachedNetworkImage(
-                  //           height: 180,
-                  //           width: double.infinity,
-                  //           fit: BoxFit.cover,
-                  //           imageUrl: ofbooks![index].bookLinkImage ?? 'N/A'),
-                  //       SizedBox(height: 15),
-                  //       Text(ofbooks![index].bookLinkName ?? 'N/A')
-                  //     ],
-                  //   ),
-                  // );
-                })
-
-       
-        );
+                }));
   }
 }
