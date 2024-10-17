@@ -1,7 +1,4 @@
-import 'dart:convert';
-
-import 'package:chetan_bhagat/model/Books.dart';
-import 'package:flutter/material.dart';
+import 'package:chetan_bhagat/view/exports/myexports.dart';
 import 'package:http/http.dart' as http;
 
 class MyBooks extends StatefulWidget {
@@ -29,6 +26,19 @@ class _MyBooksState extends State<MyBooks> {
     }
   }
 
+  Future<void> _launchInBrowserView(Uri url) async {
+    // if (!await launchUrl(url, mode: LaunchMode.inAppWebView)) {
+    //   throw Exception('Could not launch $url');
+    // }
+    if (!await launchUrl(
+      url,
+      mode: LaunchMode.inAppWebView,
+      webViewConfiguration: const WebViewConfiguration(enableJavaScript: false),
+    )) {
+      throw Exception('Could not launch $url');
+    }
+  }
+
   @override
   void initState() {
     getBooksApi();
@@ -38,42 +48,52 @@ class _MyBooksState extends State<MyBooks> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          "Books",
-          style: TextStyle(fontWeight: FontWeight.w600, color: Colors.white),
+        appBar: AppBar(
+          title: Text(
+            "Books",
+            style: TextStyle(fontWeight: FontWeight.w600, color: Colors.white),
+          ),
+          backgroundColor: Colors.orange,
         ),
-        backgroundColor: Colors.orange,
-      ),
-      body: ofbooks == null
-          ? Center(
-              child: CircularProgressIndicator.adaptive(),
-            )
+        body: ofbooks == null
+            ? Center(
+                child: CircularProgressIndicator.adaptive(),
+              )
+            : GridView.builder(
+                itemCount: ofbooks!.length,
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                ),
+                itemBuilder: (context, index) {
+                  return Uihelper.customContainerNetwork(
+                      callback: () {
+                        _launchInBrowserView(
+                            Uri(path: ofbooks![index].bookLinkImage));
+                        print("This is URi");
+                        print(Uri(path: ofbooks![index].bookLinkUrl));
+                        // ofbooks![index].bookLinkUrl);
+                      },
+                      text: ofbooks![index].bookLinkName!,
+                      imgUrl: ofbooks![index].bookLinkImage!,
+                      context: context);
+                  // return Container(
+                  //   height: 350,
+                  //   color: Colors.amber,
+                  //   child: Column(
+                  //     children: [
+                  //       CachedNetworkImage(
+                  //           height: 180,
+                  //           width: double.infinity,
+                  //           fit: BoxFit.cover,
+                  //           imageUrl: ofbooks![index].bookLinkImage ?? 'N/A'),
+                  //       SizedBox(height: 15),
+                  //       Text(ofbooks![index].bookLinkName ?? 'N/A')
+                  //     ],
+                  //   ),
+                  // );
+                })
 
-          : Column(
-              children: [
-                Expanded(
-                  child: ListView.builder(
-                    itemCount: ofbooks!.length,
-                    itemBuilder: (context, i) {
-                      // return Text(ofbooks![i].bookLinkName!);
-                      return Container(
-                        child: Row(
-                          children: [
-                            Image.network(
-                                height: 100,
-                                width: double.infinity,
-                                ofbooks![i].bookLinkImage ?? 'N/A'),
-                            Text(ofbooks![i].id ?? 'N/A')
-                          ],
-                        ),
-                      );
-                    },
-                  ),
-                )
-              ],
-            ),
-
-    );
+       
+        );
   }
 }

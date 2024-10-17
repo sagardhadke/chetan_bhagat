@@ -6,7 +6,7 @@ class Uihelper {
       {required VoidCallback callback,
       required String text,
       required String imgUrl,
-      required context}) {
+      required BuildContext context}) {
     return Padding(
       padding: const EdgeInsets.all(5.0),
       child: Container(
@@ -31,6 +31,44 @@ class Uihelper {
                 text,
                 style: TextStyle(fontSize: 21, fontWeight: FontWeight.bold),
               )
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  //network
+  static customContainerNetwork(
+      {required VoidCallback callback,
+      required String text,
+      required String imgUrl,
+      required BuildContext context}) {
+    return Padding(
+      padding: const EdgeInsets.all(5.0),
+      child: Container(
+        alignment: Alignment.center,
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(20), color: Colors.white),
+        child: GestureDetector(
+          onTap: callback,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Expanded(
+                  child: Container(
+                child: 
+                CachedNetworkImage(imageUrl: imgUrl,height: 145,
+                  width: double.infinity,
+                  fit: BoxFit.fill,),
+                
+              )),
+              SizedBox(height: 10),
+              Text(
+                textAlign: TextAlign.center,
+                text,
+                style: TextStyle(fontSize: 21, fontWeight: FontWeight.bold),
+              ),
             ],
           ),
         ),
