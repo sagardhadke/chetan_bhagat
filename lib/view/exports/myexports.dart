@@ -5,6 +5,7 @@ export 'package:chetan_bhagat/view/Screens/myimages.dart';
 export 'package:chetan_bhagat/view/Screens/myBooks.dart';
 export 'package:chetan_bhagat/view/Screens/motivational_stories.dart';
 export 'package:chetan_bhagat/view/Screens/about.dart';
+export 'package:chetan_bhagat/view/Screens/storiesDetails.dart';
 
 export 'dart:convert';
 //Dashboard

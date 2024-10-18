@@ -1,14 +1,14 @@
-class TextStories {
+class TextStoriesDetails {
   String? id;
   String? title;
   String? textStories;
   String? image;
   String? thumbImage;
 
-  TextStories(
+  TextStoriesDetails(
       {this.id, this.title, this.textStories, this.image, this.thumbImage});
 
-  TextStories.fromJson(Map<String, dynamic> json) {
+  TextStoriesDetails.fromJson(Map<String, dynamic> json) {
     id = json["id"];
     title = json["title"];
     textStories = json["text_stories"];
@@ -26,7 +26,7 @@ class TextStories {
     return _data;
   }
 
-  static List<TextStories>? ofstories(List ofData) {
-    return ofData.map((e) => TextStories.fromJson(e)).toList();
+  static List<TextStoriesDetails>? ofTextStoriesDetails(List ofData) {
+    return ofData.map((e) => TextStoriesDetails.fromJson(e)).toList();
   }
 }
