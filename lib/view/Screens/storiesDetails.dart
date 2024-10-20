@@ -42,19 +42,29 @@ class _MyStoriesDetailsState extends State<MyStoriesDetails> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text("Stories Details"),
+        backgroundColor: Colors.orange,
+      ),
       body: isLoading
           ? Center(child: CircularProgressIndicator())
           : userResponse != null
               ? SingleChildScrollView(
                   child: Column(
                     children: [
-                      Image.asset("assets/stories.png"),
-                      Text(
-                        userResponse!["title"] ?? "No Title Found",
-                        style: TextStyle(
-                            fontSize: 25,
-                            color: Colors.black,
-                            fontWeight: FontWeight.bold),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Image.asset("assets/stories.png"),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                          userResponse!["title"] ?? "No Title Found",
+                          style: TextStyle(
+                              fontSize: 25,
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold),
+                        ),
                       ),
                       Padding(
                         padding: const EdgeInsets.all(8.0),
