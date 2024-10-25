@@ -10,6 +10,16 @@ class MyQuotes extends StatefulWidget {
 class _MyQuotesState extends State<MyQuotes> {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Quotes"),
+        backgroundColor: Colors.orange,
+      ),
+      body: Column(
+        children: [
+          
+        ],
+      ),
+    );
   }
 }

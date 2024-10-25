@@ -22,7 +22,7 @@ class _MyImageQuotesDetailsState extends State<MyImageQuotesDetails> {
               widget.id));
       if (imgQuotoesDApi.statusCode == 200) {
         response = jsonDecode(imgQuotoesDApi.body);
-        print(response);
+        print("Single Image Quotes API ${response}");
         setState(() {});
       }
     } catch (e) {
