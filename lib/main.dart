@@ -1,4 +1,3 @@
-import 'package:chetan_bhagat/model/VideoStories.dart';
 import 'package:chetan_bhagat/view/exports/myexports.dart';
 
 void main() {
@@ -18,6 +17,6 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
         ),
-        home: MyHomeScreen());
+        home: MyQuotes());
   }
 }

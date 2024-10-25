@@ -57,11 +57,12 @@ class Uihelper {
             children: [
               Expanded(
                   child: Container(
-                child: 
-                CachedNetworkImage(imageUrl: imgUrl,height: 145,
+                child: CachedNetworkImage(
+                  imageUrl: imgUrl,
+                  height: 145,
                   width: double.infinity,
-                  fit: BoxFit.fill,),
-                
+                  fit: BoxFit.fill,
+                ),
               )),
               SizedBox(height: 10),
               Text(
@@ -115,5 +116,34 @@ class Uihelper {
         "text": "About"
       },
     ];
+  }
+
+  //Custom Quotes Layout
+
+  static buildQuoteCard(String imagePath, String quote) {
+    return Container(
+      height: 220,
+      decoration: BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage(imagePath),
+          fit: BoxFit.cover,
+        ),
+      ),
+      alignment: Alignment.center,
+      child: Container(
+        padding: EdgeInsets.all(20.0),
+        child: Text(
+          quote,
+          textAlign: TextAlign.center,
+          maxLines: 4,
+          overflow: TextOverflow.ellipsis,
+          style: TextStyle(
+            color: Colors.black,
+            fontSize: 20.0,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ),
+    );
   }
 }
