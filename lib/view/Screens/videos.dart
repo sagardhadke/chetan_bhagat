@@ -14,6 +14,7 @@ class MyVideosCB extends StatefulWidget {
 
 class _MyVideosCBState extends State<MyVideosCB> {
   List<VideoStories>? ofStories;
+  var videoUrls;
 
   void videosStoriesApi() async {
     try {
@@ -29,12 +30,13 @@ class _MyVideosCBState extends State<MyVideosCB> {
     }
   }
 
+  // Fetch Youtube video Thumbnail
   String? getYTThumb(int index) {
     String? getVideoId() {
       final RegExp regExp = RegExp(
         r'(?:youtu\.be\/|(?:www\.)?youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?|watch)(?:\S*[?&]v=)|.*[?&]v=))([^&\n]{11})',
       );
-      final videoUrls =
+      videoUrls =
           "https://www.youtube.com/watch?v=" + ofStories![index].videoUrl!;
       final match = regExp.firstMatch(videoUrls);
       return match?.group(1);
@@ -48,6 +50,21 @@ class _MyVideosCBState extends State<MyVideosCB> {
     final thumbnailUrl = 'https://img.youtube.com/vi/$videoId/default.jpg';
     print("Thumbnail URL: $thumbnailUrl");
     return thumbnailUrl;
+  }
+
+  //Uri Launcher
+
+  Future<void> _launchInBrowserView(String encodedUrl) async {
+    final decodedUrl = Uri.decodeFull(encodedUrl);
+
+    // Launch the URL in the external browser
+    if (!await launchUrl(
+      Uri.parse(decodedUrl), // You can parse it here for launching
+      mode: LaunchMode.externalApplication,
+    )) {
+      throw Exception(
+          'Could not launch $decodedUrl'); // Use decodedUrl for the exception message
+    }
   }
 
   @override
@@ -73,22 +90,29 @@ class _MyVideosCBState extends State<MyVideosCB> {
                       itemBuilder: (BuildContext context, int index) {
                         final thumbnailUrl = getYTThumb(index);
 
-                        return ListTile(
-                            title: Text(
-                              ofStories![index].title!,
-                              style: TextStyle(fontWeight: FontWeight.bold),
-                            ),
-                            subtitle:
-                                Text("Video Url" + ofStories![index].videoUrl!),
-                            leading: thumbnailUrl == null
-                                ? Center(
-                                    child: CircularProgressIndicator.adaptive())
-                                : CachedNetworkImage(
-                                    height: 75,
-                                    width: 75,
-                                    imageUrl: thumbnailUrl,
-                                    errorWidget: (context, url, error) =>
-                                        Image.asset("assets/novideo.png")));
+                        return GestureDetector(
+                          onTap: () {
+                            _launchInBrowserView(videoUrls);
+                          },
+                          child: ListTile(
+                              title: Text(
+                                ofStories![index].title!,
+                                style: TextStyle(fontWeight: FontWeight.bold),
+                              ),
+                              subtitle: Text(
+                                  "Video Url" + ofStories![index].videoUrl!),
+                              leading: thumbnailUrl == null
+                                  ? Center(
+                                      child:
+                                          CircularProgressIndicator.adaptive())
+                                  : CachedNetworkImage(
+                                      height: 85,
+                                      width: 85,
+                                      fit: BoxFit.cover,
+                                      imageUrl: thumbnailUrl,
+                                      errorWidget: (context, url, error) =>
+                                          Image.asset("assets/novideo.png"))),
+                        );
                       }),
                 )
               ],
