@@ -22,14 +22,14 @@ class Uihelper {
             children: [
               Image.asset(
                 imgUrl,
-                height: 95,
-                width: 95,
+                height: 90,
+                width: 90,
               ),
               SizedBox(height: 10),
               Text(
                 textAlign: TextAlign.center,
                 text,
-                style: TextStyle(fontSize: 21, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               )
             ],
           ),

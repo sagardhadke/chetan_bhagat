@@ -45,7 +45,8 @@ class _MyQuotesState extends State<MyQuotes> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Quotes"),
+        title: Text("Quotes",
+        style: TextStyle(fontWeight: FontWeight.w600, color: Colors.white),),
         backgroundColor: Colors.orange,
       ),
       body: ofTextQuotes == null ? Center(child: CircularProgressIndicator.adaptive(),) : 

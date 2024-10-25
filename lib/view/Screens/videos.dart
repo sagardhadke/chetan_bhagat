@@ -77,7 +77,8 @@ class _MyVideosCBState extends State<MyVideosCB> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Video Stories"),
+        title: Text("Video Stories",
+        style: TextStyle(fontWeight: FontWeight.w600, color: Colors.white),),
         backgroundColor: Colors.orange,
       ),
       body: ofStories == null

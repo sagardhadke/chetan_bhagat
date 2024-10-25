@@ -35,7 +35,8 @@ class _MyImagesCBState extends State<MyImagesCB> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Image Quotes"),
+        title: Text("Image Quotes",
+        style: TextStyle(fontWeight: FontWeight.w600, color: Colors.white),),
         backgroundColor: Colors.orange,
       ),
       body: ofimgQuotoes == null

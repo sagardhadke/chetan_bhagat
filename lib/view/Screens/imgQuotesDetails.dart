@@ -40,7 +40,8 @@ class _MyImageQuotesDetailsState extends State<MyImageQuotesDetails> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Image Quotes Details"),
+        title: Text("Image Quotes Details",
+        style: TextStyle(fontWeight: FontWeight.w600, color: Colors.white),),
         backgroundColor: Colors.orange,
       ),
       body: Column(

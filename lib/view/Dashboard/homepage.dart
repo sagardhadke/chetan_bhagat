@@ -28,13 +28,14 @@ class MyHomeScreen extends StatelessWidget {
                       "assets/chetan_bhagat_031.png"),
                   Text(
                     "Chetan Bhagat",
-                    style: TextStyle(fontSize: 21, fontWeight: FontWeight.bold),
+                    style:
+                        TextStyle(fontSize: 21, fontWeight: FontWeight.bold),
                   ),
                 ],
               ),
             ),
           ),
-
+      
           // Row(
           //   children: [
           //     Uihelper.customContainer(
@@ -49,15 +50,16 @@ class MyHomeScreen extends StatelessWidget {
           //         text: "Motivational Stories"),
           //   ],
           // ),
-
+      
           Expanded(
             child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: GridView(
                 shrinkWrap: true,
-                // physics: NeverScrollableScrollPhysics(),
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2, crossAxisSpacing: 5, mainAxisSpacing: 5),
+                    crossAxisCount: 2,
+                    crossAxisSpacing: 5,
+                    mainAxisSpacing: 5),
                 children: [
                   for (int i = 0;
                       i < Uihelper.dashboardData(context).length;
@@ -66,7 +68,7 @@ class MyHomeScreen extends StatelessWidget {
                         callback: () {
                           // ScaffoldMessenger.of(context).showSnackBar(
                           //     SnackBar(content: Text("item onPress")));
-
+      
                           Uihelper.dashboardData(context)[i]["onTap"]();
                         },
                         text: Uihelper.dashboardData(context)[i]["text"],

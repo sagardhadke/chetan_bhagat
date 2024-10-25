@@ -43,7 +43,8 @@ class _MyStoriesDetailsState extends State<MyStoriesDetails> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Stories Details"),
+        title: Text("Stories Details",
+        style: TextStyle(fontWeight: FontWeight.w600, color: Colors.white),),
         backgroundColor: Colors.orange,
       ),
       body: isLoading

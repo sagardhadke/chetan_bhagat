@@ -39,7 +39,8 @@ class _MotivationalStoriesState extends State<MotivationalStories> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Text Stories"),
+        title: Text("Text Stories",
+        style: TextStyle(fontWeight: FontWeight.w600, color: Colors.white),),
         backgroundColor: Colors.orange,
       ),
       body: ofstories == null
